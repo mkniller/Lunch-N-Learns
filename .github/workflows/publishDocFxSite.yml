@@ -32,6 +32,7 @@ jobs:
         dotnet-version: 8.x
 
     - run: dotnet tool update -g docfx
+    - run: dotnet build ${{ github.workspace }}/DocFX/DemoWebApi/DemoWebApi.sln
     - run: docfx ${{ github.workspace }}/DocFX/DemoWebApi/docfx_project/docfx.json
 
     - name: Setup Pages
