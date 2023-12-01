@@ -32,7 +32,7 @@ jobs:
         dotnet-version: 8.x
 
     - run: dotnet tool update -g docfx
-    - run: docfx ../../DocFx/docfx_project/docfx.json
+    - run: docfx ../../DocFx/DemoWebApi/docfx_project/docfx.json
 
     - name: Setup Pages
       uses: actions/configure-pages@v3
@@ -40,7 +40,7 @@ jobs:
       uses: actions/upload-pages-artifact@v2
       with:
         # Upload entire repository
-        path: '../../DocFx/docfx_project/_site'
+        path: '../../DocFx/DemoWebApi/docfx_project/_site'
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v2
