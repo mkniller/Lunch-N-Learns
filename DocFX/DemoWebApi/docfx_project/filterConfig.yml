@@ -1,0 +1,7 @@
+﻿apiRules:
+- exclude:
+    uidRegex: ^Microsoft
+    type: Namespace
+- exclude:
+    uidRegex: ^Swashbuckle
+    type: Namespace
