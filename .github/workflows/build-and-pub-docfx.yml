@@ -1,36 +1,47 @@
-name: DocFX Build and Publish
-
+# Your GitHub workflow file under .github/workflows/
+# Trigger the action on push to main
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-    
-jobs:
-  generate-docs:
-    runs-on: windows-latest
+    branches:
+      - main
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+  
+jobs:
+  publish-docs:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 8.x
-      - name: Setup DocFX
-        uses: crazy-max/ghaction-chocolatey@v1
-        with:
-          args: install docfx
-      - name: Install dependencies
-        run: dotnet restore ${{ github.workspace }}\DocFX\DemoWebApi\DemoWebApi.sln
-      - name: DocFX Build
-        working-directory: docs
-        run: docfx ${{ github.workspace }}\DocFX\DemoWebApi\docfx_project\docfx.json
-        continue-on-error: false
-      - name: Publish
-        if: github.event_name == 'push'
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/_site
-          force_orphan: true
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Dotnet Setup
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.x
+    - run: dotnet tool update -g docfx
+    - run: dotnet restore ${{ github.workspace }}/DocFX/DemoWebApi/DemoWebApi.sln
+    - run: dotnet build ${{ github.workspace }}/DocFX/DemoWebApi/DemoWebApi.sln
+    - run: docfx ${{ github.workspace }}/DocFX/DemoWebApi/docfx_project/docfx.json
+
+    - name: Setup Pages
+      uses: actions/configure-pages@v3
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v2
+      with:
+        # Upload entire repository
+        path: '${{ github.workspace }}/DocFX/DemoWebApi/docfx_project/_site'
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v2
