@@ -22,10 +22,10 @@ jobs:
         with:
           args: install docfx
       - name: Install dependencies
-        run: dotnet restore ${{ github.workspace }}/DocFX/DemoWebApi/DemoWebApi.sln
+        run: dotnet restore ${{ github.workspace }}\DocFX\DemoWebApi\DemoWebApi.sln
       - name: DocFX Build
         working-directory: docs
-        run: docfx ${{ github.workspace }}/DocFX/DemoWebApi/docfx_project/docfx.json
+        run: docfx ${{ github.workspace }}\DocFX\DemoWebApi\docfx_project\docfx.json
         continue-on-error: false
       - name: Publish
         if: github.event_name == 'push'
