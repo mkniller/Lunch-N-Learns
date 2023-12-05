@@ -37,6 +37,16 @@ namespace DemoWebApi
         public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 
         /// <summary>
+        ///     Gets the temperature k.
+        /// </summary>
+        ///
+        /// <value>
+        ///     The temperature k.
+        /// </value>
+
+        public int TemperatureK => TemperatureC + 273;
+
+        /// <summary>
         ///     Gets or sets the summary.
         /// </summary>
         ///
