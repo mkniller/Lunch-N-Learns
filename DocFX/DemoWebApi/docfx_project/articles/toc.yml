@@ -1,2 +1,6 @@
 - name: Introduction
   href: intro.md
+- name: Developer Onboarding
+  href: onboarding-docs.md
+- name: Stakeholder Information
+  href: stakeholder-docs.md
