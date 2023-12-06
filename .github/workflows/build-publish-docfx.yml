@@ -32,7 +32,7 @@ jobs:
         dotnet-version: 8.x
 
     - run: dotnet tool update -g docfx
-    - run: docfx ${{ github.workspace }}/DocFX/DemoWepApiDocs/docfx.json
+    - run: docfx ${{ github.workspace }}/DocFX/DemoWebApi/docfx_project/docfx.json
 
     
 
@@ -42,7 +42,7 @@ jobs:
       uses: actions/upload-pages-artifact@v2
       with:
         # Upload entire repository
-        path: '${{ github.workspace }}/DocFX/DemoWepApiDocs/_site'
+        path: '${{ github.workspace }}/DocFX/DemoWebApi/docfx_project/_site'
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v2

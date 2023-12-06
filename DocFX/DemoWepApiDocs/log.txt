@@ -1,1 +1,0 @@
-{"message":"No metadata is generated for DemoWepApiDocs.","source":"MetadataCommand.ExtractMetadata","date_time":"2023-12-04T21:52:23.5335028Z","message_severity":"warning","correlation_id":"1B8474C7-1113-49EF-AE81-37015F92F7D8.1.1.11"}

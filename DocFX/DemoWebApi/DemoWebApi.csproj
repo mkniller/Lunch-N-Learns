@@ -5,6 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <DocumentationFile>docfx_project/src/DemoWebApi.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

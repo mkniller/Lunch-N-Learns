@@ -4,19 +4,21 @@
       "src": [
         {
           "files": [
-            "DemoWebApi/**.csproj"
+            "bin/**/**/**.dll"
           ],
           "src": "../"
         }
       ],
-      "dest": "api"
+      "dest": "api",
+      "disableGitFeatures": false,
+      "disableDefaultFilter": false
     }
   ],
   "build": {
     "content": [
       {
         "files": [
-          "api/*.yml",
+          "api/**.yml",
           "api/index.md"
         ]
       },
